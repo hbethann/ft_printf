@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_str_tolower.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbethann <hbethann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/09 22:28:02 by hbethann          #+#    #+#             */
-/*   Updated: 2022/03/24 19:42:58 by hbethann         ###   ########.fr       */
+/*   Created: 2019/11/07 15:37:07 by rchallie          #+#    #+#             */
+/*   Updated: 2022/06/12 20:43:55 by hbethann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_printf.h"
 
-char	*ft_strdup(const char *s1)
+char	*ft_str_tolower(char *str)
 {
-	size_t	i;
-	size_t	len;
-	char	*mem;
-	char	*str;
+	int	i;
 
-	str = (char *)s1;
-	len = ft_strlen((char *)s1);
-	mem = (char *)malloc(sizeof(char) * (len + 1));
-	if (!mem)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		mem[i] = str[i];
-		i++;
-	}
-	mem[i] = '\0';
-	return (mem);
+	i = -1;
+	while (str[++i])
+		str[i] = ft_tolower(str[i]);
+	return (str);
 }

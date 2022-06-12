@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_treat_percent.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbethann <hbethann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/09 22:28:02 by hbethann          #+#    #+#             */
-/*   Updated: 2022/03/24 19:42:58 by hbethann         ###   ########.fr       */
+/*   Created: 2019/11/12 17:37:44 by rchallie          #+#    #+#             */
+/*   Updated: 2022/06/12 20:45:35 by hbethann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_printf.h"
 
-char	*ft_strdup(const char *s1)
+int	ft_treat_percent(t_flags flags)
 {
-	size_t	i;
-	size_t	len;
-	char	*mem;
-	char	*str;
+	int	char_count;
 
-	str = (char *)s1;
-	len = ft_strlen((char *)s1);
-	mem = (char *)malloc(sizeof(char) * (len + 1));
-	if (!mem)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		mem[i] = str[i];
-		i++;
-	}
-	mem[i] = '\0';
-	return (mem);
+	char_count = 0;
+	if (flags.minus == 1)
+		char_count += ft_putstrprec("%", 1);
+	char_count += ft_treat_width(flags.width, 1, flags.zero);
+	if (flags.minus == 0)
+		char_count += ft_putstrprec("%", 1);
+	return (char_count);
 }
